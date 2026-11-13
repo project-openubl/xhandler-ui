@@ -30,7 +30,7 @@ openubl-server = { path = "./server" }
 openubl-ui = { path = "./ui/crate" }
 
 log = "0.4"
-tera = "1.20"
+tera = "2.4"
 static-files = "0.3"
 serde = { version = "1.0", features = ["derive"] }
 zip = { version = "3.0" }
