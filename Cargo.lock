@@ -4025,7 +4025,7 @@ dependencies = [
  "openubl-entity",
  "openubl-migration",
  "sea-orm 1.1.20",
- "sea-query 0.32.7",
+ "sea-query 1.0.2",
  "serde",
  "serde_json",
  "thiserror 2.0.21",
@@ -5267,7 +5267,6 @@ dependencies = [
  "inherent",
  "ordered-float",
  "rust_decimal",
- "sea-query-derive 0.4.3",
  "serde_json",
  "time",
  "uuid",
@@ -5280,9 +5279,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "546040c653a705e60ec65ecd3191a809603734bebbc225775916dea9ae409b31"
 dependencies = [
  "chrono",
+ "itoa",
  "ordered-float",
  "rust_decimal",
- "sea-query-derive 1.0.0",
+ "sea-query-derive",
  "serde_json",
  "time",
  "uuid",
@@ -5306,25 +5306,11 @@ dependencies = [
 
 [[package]]
 name = "sea-query-derive"
-version = "0.4.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bae0cbad6ab996955664982739354128c58d16e126114fe88c2a493642502aab"
-dependencies = [
- "darling 0.20.11",
- "heck 0.4.1",
- "proc-macro2",
- "quote",
- "syn 2.0.119",
- "thiserror 2.0.21",
-]
-
-[[package]]
-name = "sea-query-derive"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a0b0f466921cdd3cf4b89d5c3ac2173dba89a873ab395b123a645de181ec7537"
 dependencies = [
- "darling",
+ "darling 0.20.11",
  "heck 0.4.1",
  "proc-macro2",
  "quote",
