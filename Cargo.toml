@@ -41,7 +41,7 @@ anyhow = "1.0"
 tokio = "1.49"
 
 sea-orm = "1"
-sea-query = "0.32"
+sea-query = "1.0"
 async-std = { version = "1" }
 clap = "4"
 minio = "0.1"
