@@ -45,10 +45,10 @@ pub enum StorageSystemErr {
     Local(std::io::Error),
 
     #[error(transparent)]
-    Minio(MinioError),
+    Minio(Box<MinioError>),
 
     #[error(transparent)]
-    S3(#[from] S3Error),
+    S3(Box<S3Error>),
 
     #[error(transparent)]
     Zip(ZipError),
@@ -85,31 +85,37 @@ impl From<std::io::Error> for StorageSystemErr {
 
 impl From<minio::s3::error::Error> for StorageSystemErr {
     fn from(e: minio::s3::error::Error) -> Self {
-        Self::Minio(MinioError::Sdk(e))
+        Self::Minio(Box::new(MinioError::Sdk(e)))
     }
 }
 
 impl From<reqwest::Error> for StorageSystemErr {
     fn from(e: reqwest::Error) -> Self {
-        Self::Minio(MinioError::HttpClient(e))
+        Self::Minio(Box::new(MinioError::HttpClient(e)))
+    }
+}
+
+impl From<S3Error> for StorageSystemErr {
+    fn from(e: S3Error) -> Self {
+        Self::S3(Box::new(e))
     }
 }
 
 impl From<ByteStreamError> for StorageSystemErr {
     fn from(e: ByteStreamError) -> Self {
-        Self::S3(S3Error::Stream(e))
+        Self::S3(Box::new(S3Error::Stream(e)))
     }
 }
 
 impl From<SdkError<GetObjectError, HttpResponse>> for StorageSystemErr {
     fn from(e: SdkError<GetObjectError, HttpResponse>) -> Self {
-        Self::S3(S3Error::Get(e))
+        Self::S3(Box::new(S3Error::Get(e)))
     }
 }
 
 impl From<SdkError<PutObjectError, HttpResponse>> for StorageSystemErr {
     fn from(e: SdkError<PutObjectError, HttpResponse>) -> Self {
-        Self::S3(S3Error::Put(e))
+        Self::S3(Box::new(S3Error::Put(e)))
     }
 }
 

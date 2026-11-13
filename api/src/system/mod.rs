@@ -57,7 +57,7 @@ impl InnerSystem {
         let db_name = &database.db_config.db_name;
 
         let url = Self::build_url(database);
-        println!("bootstrap to {}", &url);
+        println!("bootstrap to {}", url);
         let db = Database::connect(&url).await?;
 
         let _drop_db_result = db
