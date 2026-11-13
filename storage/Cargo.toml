@@ -14,7 +14,6 @@ anyhow = { workspace = true }
 uuid = { workspace = true, features = ["v4"] }
 thiserror = { workspace = true }
 zip = { workspace = true }
-tempfile = { workspace = true }
 reqwest = { workspace = true }
 aws-sdk-s3 = { workspace = true }
 tokio = { workspace = true }

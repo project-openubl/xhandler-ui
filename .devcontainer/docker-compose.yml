@@ -1,0 +1,34 @@
+networks:
+  openubl:
+    name: "openubl"
+
+volumes:
+  xhandler-postgres-data:
+
+services:
+  xhandler-ui:
+    image: localhost/devcontainer-xhandler-ui:latest
+    build:
+      dockerfile: ./Dockerfile
+    security_opt:
+      - "label=disable"
+    userns_mode: "keep-id"
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - ..:/workspace:cached
+    networks:
+      - openubl
+  
+  xhandler-db:
+    image: postgres:17
+    restart: unless-stopped
+    volumes:
+      - xhandler-postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: xhandler
+      POSTGRES_HOSTNAME: localhost
+      POSTGRES_PORT: 5432
+    networks:
+      - openubl

@@ -8,7 +8,6 @@ license.workspace = true
 openubl-entity = { workspace = true }
 openubl-common = { workspace = true }
 openubl-migration = { workspace = true }
-openubl-storage = { workspace = true }
 
 xhandler = { workspace = true }
 

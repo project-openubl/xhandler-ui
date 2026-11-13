@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths-ignore:
+      - 'README.md'
+  pull_request: { }
+
+env:
+  CI: true
+
+jobs:
+  cargo-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: Swatinem/rust-cache@v2.9.3
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+      - name: Install clippy
+        run: rustup component add clippy
+      - run: cargo fmt --check
+      - run: cargo check
+      - run: cargo clippy --all-targets --all-features -- -D warnings
+
+  cargo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: Swatinem/rust-cache@v2.9.3
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+      - run: cargo test
+
+  ui-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: npm ci --ignore-scripts
+        working-directory: ui
+      - run: npm run check
+        working-directory: ui

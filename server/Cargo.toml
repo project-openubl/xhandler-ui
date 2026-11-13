@@ -29,8 +29,6 @@ thiserror = { workspace = true }
 utoipa = { workspace = true, features = ["actix_extras", "yaml"] }
 utoipa-actix-web = { workspace = true }
 utoipa-swagger-ui = { workspace = true, features = ["actix-web"] }
-actix-web-httpauth = { workspace = true }
-actix-4-jwt-auth = { workspace = true }
 actix-multipart = { workspace = true }
 actix-web-static-files = { workspace = true }
 minio = { workspace = true }
