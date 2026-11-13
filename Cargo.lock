@@ -3739,7 +3739,7 @@ name = "openubl-ui"
 version = "0.1.1"
 dependencies = [
  "anyhow",
- "base64 0.22.1",
+ "base64 0.23.1",
  "serde",
  "serde_json",
  "static-files 0.3.1",
